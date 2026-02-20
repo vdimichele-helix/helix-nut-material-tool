@@ -10,57 +10,34 @@ import ComparisonView from '../components/ComparisonView';
 
 export default function Home() {
 
-  const [filters, setFilters] = useState({
-    low_friction: null,
-    wear_resistance: null,
-    self_lubricating: null,
-    grease_compatibility: null,
-    chemical_resistance: null,
-    min_tensile_strength: "",
-    min_temp: "",
-    max_temp: "",
-    min_limiting_pv: null,
-    max_water_absorption: null
-  });
+  const defaultFilters = {
+  low_friction: null,
+  wear_resistance: null,
+  self_lubricating: null,     // "Yes" | "No" | null
+  grease_compatibility: null,
+  chemical_resistance: null,
+  min_tensile_strength: "",
+  min_temp: "",
+  max_temp: "",
+  min_limiting_pv: "",
+  max_water_absorption: ""
+};
 
-  const onFilterChange = (key, value) => {
-    setFilters((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  };
+const [filters, setFilters] = useState(defaultFilters);
 
-  const onClearAll = () => {
-    setFilters({
-      low_friction: null,
-      wear_resistance: null,
-      self_lubricating: null,
-      grease_compatibility: null,
-      chemical_resistance: null,
-      min_tensile_strength: "",
-      min_temp: "",
-      max_temp: "",
-      min_limiting_pv: null,
-      max_water_absorption: null
-    });
-  };
+const onFilterChange = (key, value) => {
+  setFilters((prev) => ({
+    ...prev,
+    [key]: value,
+  }));
+};
 
 const onClearAll = () => {
-  setFilters({});
+  setFilters(defaultFilters);
 };
-    low_friction: null,
-    wear_resistance: null,
-    self_lubricating: null,     // "Yes" | "No" | null
-    grease_compatibility: null,
-    chemical_resistance: null,
-    min_tensile_strength: "",   // number as string
-    min_temp: "",               // number as string
-    max_temp: "",               // number as string
-    min_limiting_pv: null,
-    max_water_absorption: null,
-    min_high_temp: null,
-    max_low_temp: null
-  });
+
+  
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMaterials, setSelectedMaterials] = useState([]);
   const [showComparison, setShowComparison] = useState(false);

@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 
 export default function MaterialFilters({ filters, onFilterChange, onClearAll }) {
-  // Minimal placeholder filters so the page compiles + you can iterate later.
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="mb-3 text-sm font-semibold text-slate-900">Filters</div>

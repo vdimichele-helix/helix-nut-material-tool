@@ -12,9 +12,12 @@ export default function Home() {
   const [filters, setFilters] = useState({
     low_friction: null,
     wear_resistance: null,
+    self_lubricating: null,     // "Yes" | "No" | null
     grease_compatibility: null,
     chemical_resistance: null,
-    min_tensile_strength: null,
+    min_tensile_strength: "",   // number as string
+    min_temp: "",               // number as string
+    max_temp: "",               // number as string
     min_limiting_pv: null,
     max_water_absorption: null,
     min_high_temp: null,

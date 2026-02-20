@@ -317,12 +317,12 @@ const { data: materials = [], isLoading } = useQuery({
               )}
             </div>
             
-            <MaterialsTable 
-              data={filteredData} 
-              isLoading={isLoading}
-              selectedMaterials={selectedMaterials}
-              onToggleSelection={handleToggleSelection}
-            />
+<MaterialsTable
+  materials={filteredData}
+  isLoading={isLoading}
+  selectedIds={selectedMaterials}
+  onToggleSelect={handleToggleSelection}
+/>
           </div>
         </div>
       </div>

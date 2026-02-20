@@ -1,6 +1,5 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-
+import { Button } from "../../components/ui/button";
 export default function MaterialFilters({ filters, onFilterChange, onClearAll }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">

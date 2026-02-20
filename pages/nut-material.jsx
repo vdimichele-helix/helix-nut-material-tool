@@ -161,25 +161,24 @@ export default function NutMaterialPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6">
-            {/* LEFT: Filters */}
-            <div className="lg:col-span-4">
-              <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <label className="block text-sm font-semibold text-slate-900">
-                  Search Material
-                </label>
-                <input
-                  className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="e.g., PEEK, PTFE, Bronze..."
-                />
-                <div className="mt-3 text-xs text-slate-500">
-                  Total Materials: <span className="font-semibold">{materials.length}</span>
-                  {" • "}
-                  Showing: <span className="font-semibold">{filteredData.length}</span>
-                </div>
-              </div>
+         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
+  {/* LEFT: Filters */}
+  <div className="lg:sticky lg:top-6 h-fit">
+    {/* your search card + <MaterialFilters ... /> */}
+  </div>
+
+  {/* RIGHT: Table */}
+  <div className="min-w-0">
+    <div className="overflow-x-auto">
+      {/* your <MaterialsTable ... /> */}
+      <MaterialsTable
+        materials={isLoading ? [] : filteredData}
+        selectedIds={selectedIds}
+        onToggleSelect={toggleSelect}
+      />
+    </div>
+  </div>
+</div>
 
               <MaterialFilters
                 filters={filters}

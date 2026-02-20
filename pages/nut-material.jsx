@@ -160,7 +160,7 @@ export default function NutMaterialPage() {
           </div>
 
           {/* ✅ Key layout fix: fixed sidebar + flexible table that can shrink */}
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[230px_minmax(0,1fr)]">
             {/* LEFT: Search + Filters */}
             <div className="lg:sticky lg:top-6 h-fit space-y-4">
               <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">

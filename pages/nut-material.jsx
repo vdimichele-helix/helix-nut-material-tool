@@ -56,6 +56,11 @@ export default function NutMaterialPage() {
     setSelectedIds([]);
   };
 
+  const onPublishPDF = () => {
+  // Opens browser print dialog; user can "Save as PDF"
+  window.print();
+};
+
   const toggleSelect = (id) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]

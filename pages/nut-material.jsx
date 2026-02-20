@@ -20,7 +20,7 @@ export default function Home() {
   min_temp: "",
   max_temp: "",
   min_limiting_pv: "",
-  max_water_absorption: ""
+  max_water_absorption: "",
 };
 
 const [filters, setFilters] = useState(defaultFilters);

@@ -202,6 +202,16 @@ export default function NutMaterialPage() {
                 </div>
               ) : (
                 <div className="overflow-x-auto">
+                 <div className="mb-3 flex items-center justify-end">
+  <button
+    type="button"
+    onClick={onPublishPDF}
+    className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-slate-800"
+  >
+    Publish to PDF
+  </button>
+</div>
+                  
                   <MaterialsTable
                     materials={isLoading ? [] : filteredData}
                     selectedIds={selectedIds}

@@ -24,10 +24,14 @@ export default function Home() {
   const [selectedMaterials, setSelectedMaterials] = useState([]);
   const [showComparison, setShowComparison] = useState(false);
 
-  const { data: materials = [], isLoading } = useQuery({
-    queryKey: ['nutMaterials'],
-    queryFn: async () => [],
-  });
+const { data: materials = [], isLoading } = useQuery({
+  queryKey: ["nutMaterials"],
+  queryFn: async () => {
+    const res = await fetch("/data/nutMaterials.json");
+    if (!res.ok) throw new Error("Failed to load materials");
+    return res.json();
+  },
+});
 
   // Apply filters
   const filteredData = useMemo(() => {

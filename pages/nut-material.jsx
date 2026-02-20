@@ -161,7 +161,7 @@ export default function NutMaterialPage() {
             </p>
           </div>
 
-         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
+         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[220px_minmax(0,1fr)]">
   {/* LEFT: Filters */}
   <div className="lg:sticky lg:top-6 h-fit">
     {/* your search card + <MaterialFilters ... /> */}

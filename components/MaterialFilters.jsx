@@ -18,9 +18,8 @@ export default function MaterialFilters({ filters, onFilterChange, onClearAll })
             <option value="">Any</option>
             <option value="Excellent">Excellent</option>
             <option value="Very Low">Very Low</option>
-            <option value="Very Good">Very Good</option>
-            <option value="Good">Good</option>
             <option value="Low">Low</option>
+            <option value="Good">Good</option>
             <option value="Fair">Fair</option>
           </select>
         </div>
@@ -39,6 +38,56 @@ export default function MaterialFilters({ filters, onFilterChange, onClearAll })
             <option value="Good">Good</option>
             <option value="Fair">Fair</option>
           </select>
+        </div>
+
+        {/* Self-Lubricating */}
+        <div>
+          <label className="block mb-1">Self-Lubricating</label>
+          <select
+            className="w-full rounded-lg border border-slate-200 px-3 py-2"
+            value={filters.self_lubricating ?? ""}
+            onChange={(e) => onFilterChange("self_lubricating", e.target.value || null)}
+          >
+            <option value="">Any</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        {/* Min Tensile Strength */}
+        <div>
+          <label className="block mb-1">Min Tensile Strength</label>
+          <input
+            type="number"
+            className="w-full rounded-lg border border-slate-200 px-3 py-2"
+            placeholder="e.g., 12000"
+            value={filters.min_tensile_strength ?? ""}
+            onChange={(e) => onFilterChange("min_tensile_strength", e.target.value || "")}
+          />
+        </div>
+
+        {/* Temp Range */}
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="block mb-1">Min Temp (°F)</label>
+            <input
+              type="number"
+              className="w-full rounded-lg border border-slate-200 px-3 py-2"
+              placeholder="-40"
+              value={filters.min_temp ?? ""}
+              onChange={(e) => onFilterChange("min_temp", e.target.value || "")}
+            />
+          </div>
+          <div>
+            <label className="block mb-1">Max Temp (°F)</label>
+            <input
+              type="number"
+              className="w-full rounded-lg border border-slate-200 px-3 py-2"
+              placeholder="500"
+              value={filters.max_temp ?? ""}
+              onChange={(e) => onFilterChange("max_temp", e.target.value || "")}
+            />
+          </div>
         </div>
 
         {/* Grease Compatibility */}
@@ -83,11 +132,9 @@ export default function MaterialFilters({ filters, onFilterChange, onClearAll })
           <input
             type="number"
             className="w-full rounded-lg border border-slate-200 px-3 py-2"
-            placeholder="e.g., 10000"
+            placeholder="e.g., 50000"
             value={filters.min_limiting_pv ?? ""}
-            onChange={(e) =>
-              onFilterChange("min_limiting_pv", e.target.value || "")
-            }
+            onChange={(e) => onFilterChange("min_limiting_pv", e.target.value || "")}
           />
         </div>
 
@@ -98,7 +145,7 @@ export default function MaterialFilters({ filters, onFilterChange, onClearAll })
             type="number"
             step="0.01"
             className="w-full rounded-lg border border-slate-200 px-3 py-2"
-            placeholder="e.g., 0.10"
+            placeholder="e.g., 0.05"
             value={filters.max_water_absorption ?? ""}
             onChange={(e) =>
               onFilterChange("max_water_absorption", e.target.value || "")

@@ -69,7 +69,35 @@ const { data: materials = [], isLoading } = useQuery({
       
       // Search filter
       if (searchQuery && !material.material?.toLowerCase().includes(searchQuery.toLowerCase())) return false;
-      
+      const norm = (v) => String(v ?? "").trim().toLowerCase();
+const toNumber = (v) => {
+  if (v === null || v === undefined || v === "") return null;
+  const cleaned = String(v).replace(/,/g, "").trim();
+  const n = Number(cleaned);
+  return Number.isFinite(n) ? n : null;
+};
+
+// Grease Compatibility
+if (filters.grease_compatibility &&
+    norm(m.grease_compatibility) !== norm(filters.grease_compatibility))
+  return false;
+
+// Chemical Resistance
+if (filters.chemical_resistance &&
+    norm(m.chemical_resistance) !== norm(filters.chemical_resistance))
+  return false;
+
+// Min Limiting PV
+const minPV = toNumber(filters.min_limiting_pv);
+const matPV = toNumber(m.limiting_pv);
+if (minPV !== null && (matPV === null || matPV < minPV))
+  return false;
+
+// Max Water Absorption
+const maxWater = toNumber(filters.max_water_absorption);
+const matWater = toNumber(m.water_absorption);
+if (maxWater !== null && (matWater === null || matWater > maxWater))
+  return false;
       return true;
     });
   }, [materials, filters, searchQuery]);

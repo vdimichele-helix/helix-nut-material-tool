@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@media print {
+  /* Hide sidebar filters when printing */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Give table full width in print */
+  body {
+    background: white !important;
+  }
+}

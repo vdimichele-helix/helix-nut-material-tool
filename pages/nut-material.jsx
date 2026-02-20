@@ -208,6 +208,5 @@ export default function NutMaterialPage() {
           </div>
         </div>
       </div>
-    </>
-  );
+    );
 }

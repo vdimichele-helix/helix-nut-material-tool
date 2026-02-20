@@ -9,7 +9,45 @@ import MaterialsTable from '../components/MaterialsTable';
 import ComparisonView from '../components/ComparisonView';
 
 export default function Home() {
+
   const [filters, setFilters] = useState({
+    low_friction: null,
+    wear_resistance: null,
+    self_lubricating: null,
+    grease_compatibility: null,
+    chemical_resistance: null,
+    min_tensile_strength: "",
+    min_temp: "",
+    max_temp: "",
+    min_limiting_pv: null,
+    max_water_absorption: null
+  });
+
+  const onFilterChange = (key, value) => {
+    setFilters((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  const onClearAll = () => {
+    setFilters({
+      low_friction: null,
+      wear_resistance: null,
+      self_lubricating: null,
+      grease_compatibility: null,
+      chemical_resistance: null,
+      min_tensile_strength: "",
+      min_temp: "",
+      max_temp: "",
+      min_limiting_pv: null,
+      max_water_absorption: null
+    });
+  };
+
+const onClearAll = () => {
+  setFilters({});
+};
     low_friction: null,
     wear_resistance: null,
     self_lubricating: null,     // "Yes" | "No" | null
@@ -264,8 +302,8 @@ const { data: materials = [], isLoading } = useQuery({
               )}
               <MaterialFilters
                 filters={filters}
-                onFilterChange={handleFilterChange}
-                onClearAll={handleClearAll}
+                onFilterChange={onFilterChange}
+                onClearAll={onClearAll}
               />
             </div>
           </div>

@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 
 export default function MaterialFilters({ filters, onFilterChange, onClearAll }) {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
       <div className="mb-3 text-sm font-semibold text-slate-900">Filters</div>
 
       <div className="space-y-4 text-sm text-slate-700">

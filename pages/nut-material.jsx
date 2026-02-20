@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Search, Filter, FileDown } from 'lucide-react';
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
 import { jsPDF } from 'jspdf';
-import MaterialFilters from '../components/MaterialFilters';
+import MaterialFilters from "../components/MaterialFilters";
 import MaterialsTable from '../components/MaterialsTable';
 import ComparisonView from '../components/ComparisonView';
 

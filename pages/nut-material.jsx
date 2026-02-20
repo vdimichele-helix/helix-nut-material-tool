@@ -161,7 +161,7 @@ export default function NutMaterialPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6">
             {/* LEFT: Filters */}
             <div className="lg:col-span-4">
               <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">

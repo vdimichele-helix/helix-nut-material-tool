@@ -150,7 +150,6 @@ export default function NutMaterialPage() {
 
       <div className="min-h-screen bg-slate-50">
         <div className="mx-auto max-w-7xl px-4 py-8">
-
           {/* ON-SCREEN HEADER (hide during print) */}
           <div className="mb-6 no-print">
             <h1 className="text-2xl font-bold text-slate-900">
@@ -196,17 +195,30 @@ export default function NutMaterialPage() {
             <div className="print-area min-w-0">
               {/* PRINT HEADER (shows only in print, stays attached to table) */}
               <div className="print-header hidden print:block mb-4">
-                <h1 className="text-xl font-bold text-slate-900">
-                  Lead Screw Nut Material Selector
-                </h1>
-                <p className="mt-1 text-xs text-slate-700">
-                  Filter and compare engineering-grade nut materials by friction, wear, PV,
-                  water absorption, grease compatibility, chemical resistance, tensile strength,
-                  and temperature range.
-                </p>
-                <div className="mt-2 text-[11px] text-slate-600">
-                  Showing {filteredData.length} of {materials.length} materials
+                <div className="flex items-center justify-between gap-4">
+                  <div className="min-w-0">
+                    <h1 className="text-xl font-bold text-slate-900">
+                      Lead Screw Nut Material Selector
+                    </h1>
+                    <p className="mt-1 text-xs text-slate-700">
+                      Filter and compare engineering-grade nut materials by friction, wear, PV,
+                      water absorption, grease compatibility, chemical resistance, tensile strength,
+                      and temperature range.
+                    </p>
+                    <div className="mt-2 text-[11px] text-slate-600">
+                      Showing {filteredData.length} of {materials.length} materials
+                    </div>
+                  </div>
+
+                  {/* LOGO (print only) */}
+                  <img
+                    src="https://s3.us-west-2.amazonaws.com/catsy.1124/_tn/4074580031/FULLCOLOR.jpg?1771859486873"
+                    alt="Helix Linear Technologies"
+                    className="print-logo h-14 object-contain"
+                  />
                 </div>
+
+                <div className="mt-3 border-b border-slate-300" />
               </div>
 
               {isError ? (
@@ -236,6 +248,16 @@ export default function NutMaterialPage() {
               {isLoading && (
                 <div className="mt-3 text-sm text-slate-500">Loading materials…</div>
               )}
+
+              {/* PRINT FOOTER (print only) */}
+              <div className="print-footer hidden print:block">
+                <div className="border-t border-slate-300 pt-2 text-center text-[11px] text-slate-700">
+                  For more information, please contact our Helix Linear application engineers at{" "}
+                  <span className="font-semibold">1-855-435-4958</span>
+                  {"   |   "}
+                  <span className="font-semibold">www.HelixLinear.com</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

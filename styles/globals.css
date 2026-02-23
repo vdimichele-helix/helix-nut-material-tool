@@ -6,7 +6,6 @@
    CLEAN PDF EXPORT
 =========================*/
 @media print {
-
   /* Hide filters sidebar */
   .filters-panel {
     display: none !important;
@@ -20,17 +19,48 @@
     display: none !important;
   }
 
-  /* Remove checkbox column from table */
-  th:first-child,
-  td:first-child {
-    display: none !important;
-  }
-
   /* Expand printable area */
   .print-area {
     width: 100% !important;
     max-width: 100% !important;
   }
+
+  /* Keep the print header attached to the table (prevents page 1 being header-only) */
+  .print-header {
+    page-break-after: avoid !important;
+    break-after: avoid-page !important;
+  }
+
+  /* Reduce chances of a forced break before the table */
+  .print-area {
+    page-break-before: avoid !important;
+    break-before: avoid-page !important;
+  }
+
+  /* Remove checkbox column from table:
+     - In list view, this hides the first column (checkboxes)
+     - In compare view, the first column is "Property" (we DO want that)
+     So: only hide first column when we're in the list table that has a Select header.
+     We target by thead text column structure is unreliable in pure CSS,
+     so we provide a safe default: hide first column ONLY if it contains an input.
+  */
+  td:first-child input[type="checkbox"] {
+    display: none !important;
+  }
+  td:first-child:has(input[type="checkbox"]),
+  th:first-child:has(input[type="checkbox"]) {
+    display: none !important;
+  }
+
+  /* Fallback for browsers without :has() support (keeps prior behavior):
+     Uncomment if needed, but note it will hide the "Property" column in compare view.
+  */
+  /*
+  th:first-child,
+  td:first-child {
+    display: none !important;
+  }
+  */
 
   /* Remove shadows/cards */
   .shadow,
@@ -45,8 +75,12 @@
   }
 
   /* Prevent ugly page breaks */
-  table, tr, td, th {
+  table,
+  tr,
+  td,
+  th {
     page-break-inside: avoid !important;
+    break-inside: avoid-page !important;
   }
 
   /* Nice PDF margins */

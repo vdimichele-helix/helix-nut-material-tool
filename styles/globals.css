@@ -19,20 +19,39 @@
     display: none !important;
   }
 
-  /* Expand printable area */
+  /* Expand printable area + reserve space for footer */
   .print-area {
     width: 100% !important;
     max-width: 100% !important;
-    padding-bottom: 0 !important;
     margin-bottom: 0 !important;
     page-break-before: avoid !important;
     break-before: avoid-page !important;
+
+    /* Reserve space so content doesn't overlap the fixed footer */
+    padding-bottom: 25mm !important;
   }
 
   /* Keep the print header attached to the table (prevents page 1 being header-only) */
   .print-header {
     page-break-after: avoid !important;
     break-after: avoid-page !important;
+  }
+
+  /* Logo sizing for PDF */
+  .print-logo {
+    max-height: 60px !important;
+    height: auto !important;
+    width: auto !important;
+  }
+
+  /* Footer: fixed so it shows at the bottom of every printed page */
+  .print-footer {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 8mm !important;
+    text-align: center !important;
+    z-index: 9999 !important;
   }
 
   /* Remove checkbox column from table (hide only if a checkbox exists) */

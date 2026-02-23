@@ -1,14 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =========================
+   CLEAN PDF EXPORT
+=========================*/
 @media print {
-  /* Hide sidebar filters when printing */
-  .no-print {
+
+  /* Hide filters sidebar */
+  .filters-panel {
     display: none !important;
   }
 
-  /* Give table full width in print */
+  /* Hide buttons + UI controls */
+  .no-print,
+  button,
+  input,
+  select {
+    display: none !important;
+  }
+
+  /* Remove checkbox column from table */
+  th:first-child,
+  td:first-child {
+    display: none !important;
+  }
+
+  /* Expand printable area */
+  .print-area {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Remove shadows/cards */
+  .shadow,
+  .shadow-sm,
+  .shadow-lg {
+    box-shadow: none !important;
+  }
+
+  /* Clean white background */
   body {
     background: white !important;
+  }
+
+  /* Prevent ugly page breaks */
+  table, tr, td, th {
+    page-break-inside: avoid !important;
+  }
+
+  /* Nice PDF margins */
+  @page {
+    margin: 14mm;
   }
 }

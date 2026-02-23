@@ -57,9 +57,9 @@ export default function NutMaterialPage() {
   };
 
   const onPublishPDF = () => {
-  // Opens browser print dialog; user can "Save as PDF"
-  window.print();
-};
+    // Opens browser print dialog; user can "Save as PDF"
+    window.print();
+  };
 
   const toggleSelect = (id) => {
     setSelectedIds((prev) =>
@@ -167,7 +167,8 @@ export default function NutMaterialPage() {
           {/* ✅ Key layout fix: fixed sidebar + flexible table that can shrink */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[200px_minmax(0,1fr)]">
             {/* LEFT: Search + Filters */}
-            <div className="lg:sticky lg:top-6 h-fit space-y-4">
+            {/* ✅ Added: filters-panel wrapper so we can hide this section in print/PDF */}
+            <div className="filters-panel lg:sticky lg:top-6 h-fit space-y-4">
               <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
                 <label className="block text-sm font-semibold text-slate-900">
                   Search Material
@@ -195,23 +196,25 @@ export default function NutMaterialPage() {
             </div>
 
             {/* RIGHT: Table */}
-            <div className="min-w-0">
+            {/* ✅ Added: print-area wrapper so we can expand/target this section for print */}
+            <div className="print-area min-w-0">
               {isError ? (
                 <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
                   Error loading materials: {String(error?.message || error)}
                 </div>
               ) : (
                 <div className="overflow-x-auto">
-                 <div className="mb-3 flex items-center justify-end">
-  <button
-    type="button"
-    onClick={onPublishPDF}
-    className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-slate-800"
-  >
-    Publish to PDF
-  </button>
-</div>
-                  
+                  {/* ✅ Added: no-print class so the button does not appear in PDF */}
+                  <div className="no-print mb-3 flex items-center justify-end">
+                    <button
+                      type="button"
+                      onClick={onPublishPDF}
+                      className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-slate-800"
+                    >
+                      Publish to PDF
+                    </button>
+                  </div>
+
                   <MaterialsTable
                     materials={isLoading ? [] : filteredData}
                     selectedIds={selectedIds}

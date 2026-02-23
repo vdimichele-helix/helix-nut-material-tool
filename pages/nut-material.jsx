@@ -57,7 +57,6 @@ export default function NutMaterialPage() {
   };
 
   const onPublishPDF = () => {
-    // Opens browser print dialog; user can "Save as PDF"
     window.print();
   };
 
@@ -117,13 +116,11 @@ export default function NutMaterialPage() {
       // Temp range: material must support requested min/max
       if (minTemp !== null) {
         const lowTemp = toNumber(m.low_temperature);
-        // material low temp must be <= requested min temp
         if (lowTemp === null || lowTemp > minTemp) return false;
       }
 
       if (maxTemp !== null) {
         const highTemp = toNumber(m.high_temperature);
-        // material high temp must be >= requested max temp
         if (highTemp === null || highTemp < maxTemp) return false;
       }
 
@@ -153,7 +150,9 @@ export default function NutMaterialPage() {
 
       <div className="min-h-screen bg-slate-50">
         <div className="mx-auto max-w-7xl px-4 py-8">
-          <div className="mb-6">
+
+          {/* ON-SCREEN HEADER (hide during print) */}
+          <div className="mb-6 no-print">
             <h1 className="text-2xl font-bold text-slate-900">
               Lead Screw Nut Material Selector
             </h1>
@@ -164,10 +163,8 @@ export default function NutMaterialPage() {
             </p>
           </div>
 
-          {/* ✅ Key layout fix: fixed sidebar + flexible table that can shrink */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[200px_minmax(0,1fr)]">
             {/* LEFT: Search + Filters */}
-            {/* ✅ Added: filters-panel wrapper so we can hide this section in print/PDF */}
             <div className="filters-panel lg:sticky lg:top-6 h-fit space-y-4">
               <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
                 <label className="block text-sm font-semibold text-slate-900">
@@ -195,16 +192,29 @@ export default function NutMaterialPage() {
               />
             </div>
 
-            {/* RIGHT: Table */}
-            {/* ✅ Added: print-area wrapper so we can expand/target this section for print */}
+            {/* RIGHT: Printable area */}
             <div className="print-area min-w-0">
+              {/* PRINT HEADER (shows only in print, stays attached to table) */}
+              <div className="print-header hidden print:block mb-4">
+                <h1 className="text-xl font-bold text-slate-900">
+                  Lead Screw Nut Material Selector
+                </h1>
+                <p className="mt-1 text-xs text-slate-700">
+                  Filter and compare engineering-grade nut materials by friction, wear, PV,
+                  water absorption, grease compatibility, chemical resistance, tensile strength,
+                  and temperature range.
+                </p>
+                <div className="mt-2 text-[11px] text-slate-600">
+                  Showing {filteredData.length} of {materials.length} materials
+                </div>
+              </div>
+
               {isError ? (
                 <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
                   Error loading materials: {String(error?.message || error)}
                 </div>
               ) : (
                 <div className="overflow-x-auto">
-                  {/* ✅ Added: no-print class so the button does not appear in PDF */}
                   <div className="no-print mb-3 flex items-center justify-end">
                     <button
                       type="button"
